@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { T } from '../../lib/theme';
+import { T, ACCENT } from '../../lib/theme';
 import { EVENTS, WALKUP, partitionGoing } from '../../lib/data';
 import { useRsvps } from '../../lib/rsvps';
 import { CategoryRail, type FilterId } from '../../components/CategoryRail';
@@ -59,9 +59,14 @@ export default function Discover() {
             </Text>
             <Feather name="chevron-down" size={13} color={T.mute} />
           </Pressable>
-          <Text style={{ color: T.ink, fontSize: 19, fontWeight: '600', letterSpacing: -0.7 }}>
-            thryve
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+            <Text style={{ color: T.ink, fontSize: 19, fontWeight: '600', letterSpacing: -0.7 }}>
+              thryve
+            </Text>
+            <Text style={{ color: ACCENT, fontSize: 19, fontWeight: '600', letterSpacing: -0.7 }}>
+              .
+            </Text>
+          </View>
           <View style={{ flexDirection: 'row', gap: 6 }}>
             <Pressable
               style={{

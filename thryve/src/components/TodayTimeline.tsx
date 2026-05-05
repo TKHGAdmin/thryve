@@ -1,12 +1,47 @@
-import { View, Text, Pressable, ScrollView } from 'react-native';
-import { T, CAT, fmtCountdown } from '../lib/theme';
-import { partitionGoing, type EventItem } from '../lib/data';
-import { PhotoTile } from './PhotoTile';
-import { IgAvatarStack } from './IgAvatar';
+import { useEffect, useRef } from 'react';
+import { View, Text, Pressable, ScrollView, Animated } from 'react-native';
+import { fmtCountdown, ACCENT, T, CAT } from '../lib/theme';
+import type { EventItem } from '../lib/data';
+
+const DARK = '#111827';
+const MUTE = '#6B7280';
 
 type Props = {
   events: EventItem[];
   onOpen: (id: string) => void;
+};
+
+const PulsingDot = ({ size = 8 }: { size?: number }) => {
+  const scale = useRef(new Animated.Value(1)).current;
+  const opacity = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.parallel([
+          Animated.timing(scale, { toValue: 1.5, duration: 1000, useNativeDriver: true }),
+          Animated.timing(opacity, { toValue: 0.4, duration: 1000, useNativeDriver: true }),
+        ]),
+        Animated.parallel([
+          Animated.timing(scale, { toValue: 1, duration: 1000, useNativeDriver: true }),
+          Animated.timing(opacity, { toValue: 1, duration: 1000, useNativeDriver: true }),
+        ]),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [scale, opacity]);
+  return (
+    <Animated.View
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        backgroundColor: ACCENT,
+        transform: [{ scale }],
+        opacity,
+      }}
+    />
+  );
 };
 
 export const TodayTimeline = ({ events, onOpen }: Props) => {
@@ -16,116 +51,101 @@ export const TodayTimeline = ({ events, onOpen }: Props) => {
     <View style={{ marginTop: 26 }}>
       <View
         style={{
-          paddingHorizontal: 18,
           flexDirection: 'row',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          marginBottom: 12,
+          alignItems: 'center',
+          gap: 8,
+          paddingHorizontal: 20,
+          marginBottom: 14,
         }}
       >
-        <View>
-          <Text
-            style={{
-              color: T.mute,
-              fontSize: 11,
-              fontWeight: '600',
-              letterSpacing: 0.3,
-              textTransform: 'uppercase',
-            }}
-          >
-            Live timeline
-          </Text>
-          <Text
-            style={{
-              marginTop: 2,
-              color: T.ink,
-              fontSize: 22,
-              fontWeight: '600',
-              letterSpacing: -0.7,
-            }}
-          >
-            <Text style={{ fontStyle: 'italic', fontWeight: '400' }}>Today &</Text> tomorrow
-          </Text>
-        </View>
+        <PulsingDot size={8} />
+        <Text
+          style={{
+            color: DARK,
+            fontSize: 13,
+            fontWeight: '700',
+            letterSpacing: 1,
+            textTransform: 'uppercase',
+          }}
+        >
+          Live now
+        </Text>
       </View>
+
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          gap: 10,
-          paddingHorizontal: 18,
-          paddingTop: 38,
-          paddingBottom: 4,
-        }}
+        contentContainerStyle={{ gap: 12, paddingHorizontal: 20 }}
       >
         {sorted.map((e) => {
           const c = CAT[e.cat];
-          const part = partitionGoing(e.going);
           return (
-            <Pressable key={e.id} onPress={() => onOpen(e.id)} style={{ width: 200 }}>
-              <View style={{ alignItems: 'center', marginBottom: 8 }}>
-                <Text style={{ color: T.mute, fontSize: 10, fontWeight: '600' }}>
-                  {fmtCountdown(e.startsIn)}
-                </Text>
-                <View
-                  style={{
-                    marginTop: 2,
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
-                    backgroundColor: e.live ? T.hot : c.dot,
-                    borderWidth: 2,
-                    borderColor: T.page,
-                  }}
-                />
-              </View>
+            <Pressable
+              key={e.id}
+              onPress={() => onOpen(e.id)}
+              style={{
+                minWidth: 200,
+                backgroundColor: T.ink,
+                borderRadius: 18,
+                paddingHorizontal: 16,
+                paddingVertical: 14,
+                overflow: 'hidden',
+              }}
+            >
               <View
                 style={{
-                  backgroundColor: T.paper,
-                  borderWidth: 1,
-                  borderColor: T.hair,
-                  borderRadius: 16,
-                  overflow: 'hidden',
+                  position: 'absolute',
+                  right: -40,
+                  top: -40,
+                  width: 110,
+                  height: 110,
+                  borderRadius: 55,
+                  backgroundColor: c.dot,
+                  opacity: 0.3,
+                }}
+              />
+              <Text
+                numberOfLines={1}
+                style={{ color: T.paper, fontSize: 15, fontWeight: '700' }}
+              >
+                {e.title}
+              </Text>
+              <Text
+                numberOfLines={1}
+                style={{
+                  color: 'rgba(250,249,244,0.65)',
+                  fontSize: 12,
+                  fontWeight: '500',
+                  marginTop: 2,
                 }}
               >
-                <PhotoTile cat={e.cat} idx={1} width="100%" height={84} radius={0} />
-                <View style={{ padding: 12 }}>
-                  <Text
-                    numberOfLines={2}
-                    style={{
-                      color: T.ink,
-                      fontSize: 14,
-                      fontWeight: '600',
-                      letterSpacing: -0.3,
-                      lineHeight: 17,
-                      minHeight: 32,
-                    }}
-                  >
-                    {e.title}
+                {e.crew}
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: 12,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <PulsingDot size={6} />
+                  <Text style={{ color: ACCENT, fontSize: 12, fontWeight: '700' }}>
+                    Starts in {fmtCountdown(e.startsIn)}
                   </Text>
-                  <View
-                    style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 6 }}
-                  >
-                    {part.youKnow.length > 0 ? (
-                      <>
-                        <IgAvatarStack
-                          handles={e.going}
-                          max={3}
-                          size={18}
-                          border={T.paper}
-                          ring={false}
-                        />
-                        <Text style={{ color: T.mute, fontSize: 11, fontWeight: '500' }}>
-                          {part.youKnow.length} you follow
-                        </Text>
-                      </>
-                    ) : (
-                      <Text style={{ color: T.mute, fontSize: 11, fontWeight: '500' }}>
-                        {e.total} going
-                      </Text>
-                    )}
-                  </View>
                 </View>
+                <Pressable
+                  onPress={() => onOpen(e.id)}
+                  style={{
+                    backgroundColor: ACCENT,
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
+                    borderRadius: 12,
+                  }}
+                >
+                  <Text style={{ color: DARK, fontSize: 13, fontWeight: '700' }}>Join</Text>
+                </Pressable>
               </View>
             </Pressable>
           );

@@ -39,3 +39,9 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Supabase CLI cache
+supabase/.temp/
+
+# Claude Code runtime
+.claude/scheduled_tasks.lock

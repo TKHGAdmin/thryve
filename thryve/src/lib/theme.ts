@@ -1,5 +1,5 @@
 export const T = {
-  page: '#FAF9F4',
+  page: '#EDEEF0',
   paper: '#FFFFFF',
   paperW: '#FCFBF6',
   ink: '#0E1112',
@@ -15,6 +15,8 @@ export const T = {
   freeBg: '#E6F4EC',
   amber: '#C77808',
 } as const;
+
+export const ACCENT = '#B9FF66';
 
 export type CategoryId =
   | 'cold' | 'run' | 'breath' | 'fest' | 'yoga' | 'social' | 'hike' | 'pkl' | 'sauna';

@@ -1,7 +1,9 @@
 import { Tabs, useRouter } from 'expo-router';
 import { View, Pressable, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { T } from '../../lib/theme';
+import { BlurView } from 'expo-blur';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { T, ACCENT } from '../../lib/theme';
 
 type IconName = 'compass' | 'calendar' | 'users' | 'user';
 
@@ -12,8 +14,12 @@ const TABS: { name: string; icon: IconName; label: string }[] = [
   { name: 'profile', icon: 'user', label: 'You' },
 ];
 
+const INACTIVE = '#9CA3AF';
+const DARK = '#111827';
+
 function CustomTabBar({ state, navigation }: any) {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const left = TABS.slice(0, 2);
   const right = TABS.slice(2);
 
@@ -21,6 +27,7 @@ function CustomTabBar({ state, navigation }: any) {
     const route = state.routes.find((r: any) => r.name === tab.name);
     if (!route) return null;
     const isFocused = state.routes[state.index].name === tab.name;
+    const color = isFocused ? ACCENT : INACTIVE;
     return (
       <Pressable
         key={tab.name}
@@ -30,23 +37,11 @@ function CustomTabBar({ state, navigation }: any) {
           paddingVertical: 8,
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 2,
+          gap: 4,
         }}
       >
-        <Feather
-          name={tab.icon}
-          size={19}
-          color={isFocused ? T.paper : 'rgba(250,249,244,0.5)'}
-        />
-        <Text
-          style={{
-            color: isFocused ? T.paper : 'rgba(250,249,244,0.45)',
-            fontSize: 10,
-            fontWeight: '600',
-          }}
-        >
-          {tab.label}
-        </Text>
+        <Feather name={tab.icon} size={24} color={color} />
+        <Text style={{ color, fontSize: 10, fontWeight: '600' }}>{tab.label}</Text>
       </Pressable>
     );
   };
@@ -55,45 +50,81 @@ function CustomTabBar({ state, navigation }: any) {
     <View
       style={{
         position: 'absolute',
-        left: 14,
-        right: 14,
-        bottom: 18,
-        backgroundColor: T.ink,
-        borderRadius: 22,
-        borderWidth: 1,
-        borderColor: T.ink2,
-        paddingHorizontal: 8,
-        paddingVertical: 6,
-        flexDirection: 'row',
-        alignItems: 'center',
-        shadowColor: T.ink,
-        shadowOpacity: 0.18,
-        shadowRadius: 36,
-        shadowOffset: { width: 0, height: 12 },
-        elevation: 8,
+        left: 16,
+        right: 16,
+        bottom: 16 + insets.bottom * 0.4,
+        height: 64,
+        shadowColor: '#000',
+        shadowOpacity: 0.06,
+        shadowRadius: 20,
+        shadowOffset: { width: 0, height: -2 },
+        elevation: 12,
       }}
     >
-      {left.map(renderTab)}
-      <Pressable
-        onPress={() => router.push('/create')}
+      <View
         style={{
-          width: 50,
-          height: 50,
-          borderRadius: 14,
-          backgroundColor: T.glow,
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: -22,
-          shadowColor: T.glow,
-          shadowOpacity: 0.5,
-          shadowRadius: 18,
-          shadowOffset: { width: 0, height: 8 },
-          elevation: 6,
+          flex: 1,
+          borderRadius: 24,
+          overflow: 'hidden',
         }}
       >
-        <Feather name="plus" size={22} color={T.glowInk} />
-      </Pressable>
-      {right.map(renderTab)}
+        <BlurView
+          intensity={40}
+          tint="light"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(240, 240, 240, 0.55)',
+            borderWidth: 0.5,
+            borderColor: 'rgba(255, 255, 255, 0.3)',
+            borderRadius: 24,
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 8,
+          }}
+        >
+          {left.map(renderTab)}
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Pressable
+              onPress={() => router.push('/create')}
+              style={{
+                width: 52,
+                height: 52,
+                borderRadius: 16,
+                backgroundColor: ACCENT,
+                alignItems: 'center',
+                justifyContent: 'center',
+                transform: [{ translateY: -8 }],
+                shadowColor: ACCENT,
+                shadowOpacity: 0.4,
+                shadowRadius: 16,
+                shadowOffset: { width: 0, height: 4 },
+                elevation: 8,
+              }}
+            >
+              <Feather name="plus" size={26} color={DARK} />
+            </Pressable>
+          </View>
+          {right.map(renderTab)}
+        </View>
+      </View>
     </View>
   );
 }
