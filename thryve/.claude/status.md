@@ -1,6 +1,6 @@
 # Thryve — Project Status
 ## Build phase: MVP — Sprint 1: Backend + Auth
-## Last session: 2026-05-05
+## Last session: 2026-05-05 (Session 3)
 ## Next priority: End-to-end test login → onboarding → feed, then wire feed to Supabase.
 
 | Feature | Status | Notes |
