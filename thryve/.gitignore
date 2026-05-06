@@ -45,3 +45,4 @@ supabase/.temp/
 
 # Claude Code runtime
 .claude/scheduled_tasks.lock
+.claude/sessions/latest.md

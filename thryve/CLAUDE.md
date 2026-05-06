@@ -211,6 +211,10 @@ Cold Plunge / Ice Bath, Run Clubs, Yoga / Sound Bath, Breathwork, Fitness Festiv
 - Test on physical iPhone via Expo Go before committing
 - Charleston SC is the launch city — use Charleston locations in all sample data
 - All sample data should reference real Charleston locations and realistic wellness events
+- When the user says /clear, execute the session handoff protocol at .claude/commands/clear.md — this is mandatory, never skip it
+- At the start of every session, read .claude/memory.md and .claude/status.md before doing anything else
+- These files contain accumulated knowledge about user preferences, technical patterns, product decisions, and project state
+- Follow the patterns and preferences documented in memory.md — they represent how the user wants to work
 
 ## Not in MVP
 - Premium host subscription (pricing TBD)
