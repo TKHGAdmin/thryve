@@ -1,3 +1,4 @@
+// DEPRECATED: Feed now reads from Supabase. This file is kept for reference only.
 import type { CategoryId } from './theme';
 
 export type Relation = 'mutual' | 'follow' | 'follower';

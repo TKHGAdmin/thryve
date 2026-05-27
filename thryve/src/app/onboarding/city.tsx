@@ -15,6 +15,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
 import { ACCENT } from '../../lib/theme';
 import { supabase } from '../../lib/supabase';
+import { registerForPushNotifications } from '../../lib/notifications';
 import { useAuth } from '../../hooks/useAuth';
 import { OnboardingProgress } from '../../components/OnboardingProgress';
 
@@ -125,6 +126,8 @@ export default function OnboardingCity() {
       setSubmitting(false);
       return;
     }
+    // Fire-and-forget push registration. Don't block routing if user denies.
+    registerForPushNotifications().catch(() => {});
     await refetchProfile();
     setSubmitting(false);
     router.replace('/(tabs)');
