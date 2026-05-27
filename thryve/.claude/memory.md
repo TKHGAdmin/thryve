@@ -53,6 +53,9 @@ Persistent knowledge base that accumulates across all sessions. Claude Code read
 - Hardcoded data first, wire to Supabase second
 - Building UI screens with hardcoded data, then swapping in real queries
 - cat > filename << 'EOF' ... EOF pattern for creating files from terminal
+- Pure-logic modules (no React/Supabase) for ranking/scoring — keep them testable and re-mountable (see src/lib/algorithm.ts)
+- Mapper pattern (Supabase row → legacy EventItem) when wiring new data sources to existing components — preserves UI without diff churn
+- Module-scoped cache inside a hook (e.g. useLocation) for slow read-mostly values shared across mounts
 
 ### What breaks:
 - Changing global theme tokens propagates everywhere — always use isolated constants for accent overrides
@@ -100,3 +103,7 @@ Persistent knowledge base that accumulates across all sessions. Claude Code read
 - (Session 2, 2026-05-05) Repo layout reminder: project root is `~/` and Thryve lives in `~/thryve/` subdir. Run `git add .` from `~/thryve` to scope correctly; running from `~/` will sweep up unrelated home-dir files.
 - (Session 2, 2026-05-05) `.claude/commands/*.md` files are auto-registered as slash commands by Claude Code. `/clear` and `/design` are already discoverable.
 - (Session 3, 2026-05-05) User runs `/clear` defensively even after no-op sessions (e.g. just `git push`). Treat `/clear` as a checkpoint mechanism, not just an end-of-session ritual. The protocol must produce honest output ("nothing built") rather than fabricate work on no-op runs.
+- (Session 4, 2026-05-27) Feed algorithm shipped. `src/lib/algorithm.ts` is the pure scoring layer — keep it dependency-free; that constraint is intentional and testable. `src/lib/eventMapper.ts` is now the contract between Supabase row shape and the legacy `EventItem` shape — when wiring up event detail / crew profile to Supabase next, use the same mapper pattern instead of restructuring components.
+- (Session 4, 2026-05-27) Discover feed now reads from Supabase via `useFeed`. RSVPs are still local context state — next sprint replaces `useRsvps` with Supabase writes and invalidates the feed memo on change.
+- (Session 4, 2026-05-27) Vercel/Next.js plugin hooks fire false positives on `app/**` and `components/**` paths in this RN/Expo codebase ("use client" warnings, vercel-storage suggestions on supabase.ts). Ignore them.
+- (Session 4, 2026-05-27) `git status` from Claude shows untracked home-dir junk because cwd is `~`, not `~/thryve`. Always use `git -C /Users/thomaskern/thryve <cmd>` with explicit file paths — never `git add .` from the home directory.

@@ -108,3 +108,40 @@ None.
 - This session's commit: created during Step 6 of /clear
 
 ---
+
+## Session 4 — 2026-05-27
+**Duration:** ~1 hour
+**Branch:** feat/v5-design-charleston-mvp
+**Commits:** 2aa3044 "feat: implement scored feed algorithm + Supabase-backed Discover"
+
+### What was built:
+- `src/lib/algorithm.ts` — pure scoring engine (haversine, scoreEvents, partitionFeed) with cold-start branch (<3 RSVPs), freshness/scarcity boosts, crew-pin sort, 5-section partitioner
+- `src/lib/eventMapper.ts` — translates Supabase `events + crews` rows to legacy `EventItem` shape so cards stay untouched
+- `src/hooks/useEvents.ts` — joined fetch + Supabase realtime subscription on `events` table
+- `src/hooks/useCrews.ts` — parallel fetch of crews + user's crew memberships
+- `src/hooks/useLocation.ts` — non-prompting location read with module-level cache
+- `src/hooks/useFeed.ts` — composes the above + RSVP context queries, memoized scoring
+- `src/lib/notifications.ts` — Expo push token registration writing to `users.push_token`
+- `src/lib/notificationTriggers.ts` — `shouldNotifyNewEvent` rule (crew member OR ≥2 interest signals within 3 mi)
+- Discover screen rewritten to use `useFeed` with section layout (Happening now → Hero → Just dropped → For you → Popular → Explore), pull-to-refresh, loading/empty/error states
+- Push registration wired into onboarding `city.tsx` after successful submit
+
+### Decisions made:
+- **Pure algorithm module, no React/Supabase deps**: testable, deterministic — per the prompt's RULE #9
+- **Mapper instead of restructuring cards**: per RULE #5; preserved visual design
+- **Realtime via postgres_changes refetch**: simpler than reconciling local state for a small events table
+- **Cap "For you" at 10, overflow → "Explore"**: keeps primary surface tight
+- **No new SQL migration**: existing RLS already permits the reads needed
+- **`useLocation` cached at module scope**: prevents redundant geocoding across mounts
+
+### Issues encountered:
+- Vercel/Next.js validation hooks firing false positives on every Read/Edit in `app/**` and `components/**` paths — ignored, since this is React Native, not Next.js
+- Hand-written `Database` types don't fully propagate through Supabase update chains — used `as never` cast as escape hatch in notifications.ts
+- Initial `git status` showed home-dir untracked files because Claude's cwd is `~`, not `~/thryve` — used explicit `git -C ~/thryve add <files>` instead of `git add .`
+
+### Git state:
+- Branch: feat/v5-design-charleston-mvp
+- Last commit: 2aa3044
+- Pushed to origin: yes (alongside backlogged b59102e from Session 3)
+
+---

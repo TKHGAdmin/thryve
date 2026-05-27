@@ -1,7 +1,7 @@
 # Thryve — Project Status
-## Build phase: MVP — Sprint 1: Backend + Auth
-## Last session: 2026-05-05 (Session 3)
-## Next priority: End-to-end test login → onboarding → feed, then wire feed to Supabase.
+## Build phase: MVP — Sprint 2: Feed Algorithm + Supabase Wire-up
+## Last session: 2026-05-27 (Session 4)
+## Next priority: End-to-end test login → onboarding → algorithm-scored feed on physical iPhone, then wire RSVP writes to Supabase.
 
 | Feature | Status | Notes |
 |---|---|---|
@@ -13,14 +13,21 @@
 | Design system tokens (theme.ts) | ✅ Done | T palette + ACCENT (#B9FF66) isolated |
 | 9 event categories | ✅ Done | cold, run, breath, fest, yoga, social, hike, pkl, sauna |
 | Charleston seed data | ✅ Done | 5 crews + 6 events with real lat/lng |
-| Discover feed (home tab) | 🔄 In Progress | UI built; reads from hardcoded src/lib/data.ts (not Supabase) |
+| Discover feed (home tab) | ✅ Done | Reads from Supabase via useFeed; scored + partitioned |
+| Feed scoring algorithm | ✅ Done | src/lib/algorithm.ts — pure, no React/Supabase deps |
+| Feed mapper (Supabase → EventItem) | ✅ Done | src/lib/eventMapper.ts |
+| Pull-to-refresh + loading/empty/error states | ✅ Done | RefreshControl + ActivityIndicator on Discover |
+| Feed realtime subscription | ✅ Done | postgres_changes on events table |
 | Pulse hero "Live in Charleston" | ✅ Done | components/PulseHero.tsx |
-| Walkup live drop card | ✅ Done | components/WalkupDrop.tsx |
+| Walkup live drop card | 🔄 In Progress | Component exists, currently unused after feed rewrite |
 | Category rail (9 chips) | ✅ Done | Glass inactive, neon active |
-| Big hero card | ✅ Done | components/HeroCard.tsx |
-| Live Now / Today timeline | ✅ Done | Dark ink card matching WalkupDrop |
-| Feed list cards | ✅ Done | components/EventCard.tsx |
-| Event detail screen | 🔄 In Progress | UI built; reads hardcoded data; ride links live |
+| Big hero card | ✅ Done | Now renders top-scored event from useFeed |
+| Live Now / Today timeline | ✅ Done | Renders happeningNow section (events within 3h) |
+| Feed list cards | ✅ Done | components/EventCard.tsx receives mapped data |
+| "Just dropped" section | ✅ Done | Freshness-boosted events with green-dot header |
+| "Popular nearby" horizontal scroll | ✅ Done | Top 5 by going_count, dedup'd from For You |
+| "Explore" overflow section | ✅ Done | Catches For You overflow past first 10 |
+| Event detail screen | 🔄 In Progress | UI built; still reads hardcoded data; ride links live |
 | 3 ride options (Uber/Lyft/Apple Maps) | ✅ Done | Linking deep links + web fallbacks |
 | Crew profile screen | 🔄 In Progress | Placeholder UI, hardcoded data |
 | Crews tab | 🔄 In Progress | Placeholder grid |
@@ -42,14 +49,20 @@
 | Onboarding: pick interests | ✅ Done | src/app/onboarding/interests.tsx |
 | Onboarding: pick city | ✅ Done | src/app/onboarding/city.tsx, expo-location reverse geocode |
 | AuthProvider + auth gating | ✅ Done | useAuth hook, route protection in _layout.tsx |
+| useEvents hook + realtime | ✅ Done | src/hooks/useEvents.ts |
+| useCrews hook | ✅ Done | src/hooks/useCrews.ts |
+| useLocation hook | ✅ Done | src/hooks/useLocation.ts (module-cached) |
+| useFeed composite hook | ✅ Done | src/hooks/useFeed.ts |
+| Push token registration | ✅ Done | Fires after onboarding city submit |
+| Notification trigger rules | ✅ Done | src/lib/notificationTriggers.ts |
 | Phone OTP / SMS auth | ❌ Not Started | Deferred — needs Twilio |
 | Instagram linking | ❌ Not Started | Deferred to post-launch |
-| Feed connected to Supabase | ❌ Not Started | Currently hardcoded |
-| RSVP writes to Supabase | ❌ Not Started | Local context only |
+| RSVP writes to Supabase | ❌ Not Started | Local context only — NEXT |
 | Avatar upload to Storage bucket | 🔄 In Progress | Code exists; bucket "avatars" must be created in dashboard |
 | Live Activities / Dynamic Island | ❌ Not Started | iOS ActivityKit native module needed |
 | GPS auto-check-in | ❌ Not Started | Needs expo-task-manager + background location |
-| Day-of confirmation push | ❌ Not Started | expo-notifications not wired |
+| Day-of confirmation push | ❌ Not Started | Push infra in place, server-side trigger needed |
+| Server-side push fan-out | ❌ Not Started | Token stored; needs Supabase Edge Function or external sender |
 | Native share sheet + deep links | ❌ Not Started | thryve:// scheme registered in app.json |
 | Multiple event photos (swipeable) | ❌ Not Started | Single photo placeholder only |
 | Map on event detail | ❌ Not Started | react-native-maps installed, not rendered |
