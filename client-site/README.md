@@ -1,13 +1,14 @@
-# Client athletic club site
+# KBE Fitness site
 
 Single-file static site (`index.html`): HTML, CSS and JS in one file, using Roboto from Google Fonts.
 
 ## Brand
-- Primary orange `#F2870F`, pink `#F7AFBA`, peach `#F9C79A`. Edit the tokens at the top of the `<style>` block.
-- Placeholder name is **Rise Athletic Club**. Find and replace "Rise" / "Rise AC" / the "R" logo mark with the client's name.
+- Styled after the KBE Fitness logo: dark gym background, thin wide-spaced Roboto caps, orange K/E with a hot pink B.
+- Colors: primary orange `#F2870F`, hot pink `#E85A98` (from the logo), soft pink `#F7AFBA`, peach `#F9C79A`. Edit the tokens at the top of the `<style>` block.
+- The logo is rebuilt in HTML/CSS (`.logo` in the header/footer, `.hero-mark` in the hero). Swap in an image file if you have a transparent PNG/SVG of the logo.
 
 ## Before launch
-- Photos: replace the striped `.photo` boxes with `<img>` tags (see the HTML comments in the hero and coach sections).
+- Photos: replace the dark gradient `.photo` boxes with `<img>` tags (see the HTML comments in the hero and coach sections).
 - Coach bio: replace `[Coach Name]` and the credentials.
 - Testimonials: replace the placeholder cards with real client quotes.
 - Contact details in the footer.

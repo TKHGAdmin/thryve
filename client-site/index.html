@@ -3,36 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rise Athletic Club</title>
-<meta name="description" content="Personal training, online coaching and nutrition coaching built around your goals.">
+<title>KBE Fitness</title>
+<meta name="description" content="Personal training, online coaching and nutrition coaching with KBE Fitness.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300&display=swap">
 <style>
-/* Layout: full-bleed color bands (orange / ink / pink / peach) stacked like training blocks, content on a 1200px grid */
+/* Layout: moody dark gym ground, thin wide-tracked caps lifted from the KBE logo, orange + hot pink as light on dark */
 :root {
-  --orange: #F2870F;      /* primary */
-  --orange-deep: #D97100; /* hover / pressed */
-  --pink: #F7AFBA;
-  --peach: #F9C79A;
-  --cream: #FFF6EE;       /* warm page ground, biased to the peach */
-  --ink: #1F1611;         /* warm near-black */
-  --ink-soft: #5E4A3E;    /* secondary text */
-  --white: #FFFFFF;
+  --orange: #F2870F;       /* primary — the K and E */
+  --hot-pink: #E85A98;     /* the B and FITNESS */
+  --pink: #F7AFBA;         /* soft accent */
+  --peach: #F9C79A;        /* soft accent */
+  --night: #141011;        /* page ground */
+  --night-2: #1D1719;      /* raised surface */
+  --night-3: #2A2124;      /* card / input fill */
+  --line: rgba(247, 175, 186, .22);  /* thin pink-tinted rules */
+  --text: #F7EFEA;
+  --muted: #B9A8A4;
 
   --font: "Roboto", "Helvetica Neue", Arial, sans-serif;
   --fs-xs: .8125rem;
   --fs-sm: .9375rem;
   --fs-md: 1.0625rem;
-  --fs-lg: 1.375rem;
-  --fs-xl: clamp(1.75rem, 3.2vw, 2.5rem);
-  --fs-2xl: clamp(2.25rem, 5vw, 3.75rem);
-  --fs-hero: clamp(2.75rem, 8.2vw, 6.75rem);
+  --fs-lg: 1.3125rem;
+  --fs-xl: clamp(1.5rem, 2.6vw, 2rem);
+  --fs-2xl: clamp(2rem, 4.6vw, 3.5rem);
+  --fs-hero: clamp(5rem, 22vw, 15rem);
 
   --gutter: clamp(16px, 4vw, 40px);
   --max: 1200px;
-  --radius: 4px;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -43,286 +44,296 @@ html { scroll-behavior: smooth; }
 }
 body {
   margin: 0;
-  background: var(--cream);
-  color: var(--ink);
+  background: var(--night);
+  color: var(--text);
   font-family: var(--font);
   font-size: var(--fs-md);
-  line-height: 1.6;
+  font-weight: 300;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-h1, h2, h3 { margin: 0; line-height: 1.02; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-weight: 300; line-height: 1.1; text-wrap: balance; }
 p { margin: 0; }
+strong, b { font-weight: 500; }
 
 .wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
-.band { padding-block: clamp(64px, 9vw, 120px); }
+.band { padding-block: clamp(72px, 10vw, 132px); }
+.band-raised { background: var(--night-2); }
 
 .eyebrow {
   font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: .16em;
+  font-weight: 400;
+  letter-spacing: .42em;
   text-transform: uppercase;
+  color: var(--hot-pink);
 }
 .display {
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: -.02em;
+  letter-spacing: .06em;
 }
+.display em { font-style: normal; color: var(--orange); }
+.display .pk { color: var(--hot-pink); }
 
-:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+/* Logo — mirrors the KBE mark: thin orange K/E, hot pink B tucked in, spaced FITNESS below */
+.logo { display: inline-grid; justify-items: center; text-decoration: none; line-height: 1; }
+.logo-word { font-weight: 300; font-size: 1.75rem; letter-spacing: -.02em; }
+.logo-word .o { color: var(--orange); }
+.logo-word .p { color: var(--hot-pink); margin-inline: -.06em; }
+.logo-sub { margin-top: 4px; font-size: .5625rem; font-weight: 400; letter-spacing: .62em; margin-right: -.62em; text-transform: uppercase; color: var(--hot-pink); }
 
 /* Buttons */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
-  padding: 1rem 1.75rem;
-  font: 700 var(--fs-sm)/1 var(--font);
-  letter-spacing: .1em; text-transform: uppercase;
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  padding: 1rem 1.9rem;
+  font: 400 var(--fs-xs)/1 var(--font);
+  letter-spacing: .28em; text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid var(--ink);
+  border: 1px solid var(--orange);
   border-radius: 999px;
   cursor: pointer;
-  transition: background .2s, color .2s, transform .2s;
+  transition: background .25s, color .25s, border-color .25s;
 }
-.btn:hover { transform: translateY(-2px); }
-.btn-ink { background: var(--ink); color: var(--white); }
-.btn-ink:hover { background: var(--orange); color: var(--ink); }
-.btn-line { background: transparent; color: var(--ink); }
-.btn-line:hover { background: var(--ink); color: var(--white); }
-.btn-orange { background: var(--orange); color: var(--ink); }
-.btn-orange:hover { background: var(--white); }
+.btn-fill { background: var(--orange); color: var(--night); font-weight: 500; }
+.btn-fill:hover { background: var(--hot-pink); border-color: var(--hot-pink); color: var(--text); }
+.btn-line { background: transparent; color: var(--text); border-color: rgba(247, 239, 234, .4); }
+.btn-line:hover { border-color: var(--hot-pink); color: var(--hot-pink); }
 .arrow { transition: transform .2s; }
 .btn:hover .arrow { transform: translateX(4px); }
 
 /* Header */
 .site-header {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-  background: var(--orange);
-  border-bottom: 2px solid var(--ink);
+  background: rgba(20, 16, 17, .88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
-.logo-mark {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--ink); color: var(--orange);
-  display: grid; place-items: center; font-size: 1rem;
-}
-.logo small { display: block; font-weight: 500; font-size: .625rem; letter-spacing: .28em; }
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
-.nav-links a { text-decoration: none; font-weight: 500; font-size: var(--fs-sm); }
-.nav-links a:not(.btn):hover { text-decoration: underline; text-underline-offset: 4px; }
-.nav-links .btn { padding: .75rem 1.25rem; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
+.nav-links { display: flex; align-items: center; gap: 30px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; font-size: var(--fs-xs); letter-spacing: .24em; text-transform: uppercase; }
+.nav-links a:not(.btn):hover { color: var(--orange); }
+.nav-links .btn { padding: .8rem 1.3rem; }
 .menu-toggle {
-  display: none; background: none; border: 2px solid var(--ink); border-radius: 999px;
-  padding: .5rem 1rem; font: 700 var(--fs-xs)/1 var(--font); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; color: var(--ink);
+  display: none; background: none; color: var(--text);
+  border: 1px solid rgba(247, 239, 234, .4); border-radius: 999px;
+  padding: .55rem 1.1rem; font: 400 var(--fs-xs)/1 var(--font); letter-spacing: .24em; text-transform: uppercase; cursor: pointer;
 }
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .menu-toggle { display: inline-block; }
   .nav-links {
     display: none; position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; align-items: flex-start; gap: 0;
-    background: var(--orange); border-bottom: 2px solid var(--ink);
-    padding: 8px var(--gutter) 24px;
+    background: var(--night); border-bottom: 1px solid var(--line);
+    padding: 8px var(--gutter) 28px;
   }
   .nav-links.open { display: flex; }
   .nav-links li { width: 100%; }
-  .nav-links a:not(.btn) { display: block; padding: 14px 0; border-bottom: 1px solid rgba(31,22,17,.2); font-size: var(--fs-md); }
-  .nav-links .btn { margin-top: 16px; }
+  .nav-links a:not(.btn) { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .nav-links .btn { margin-top: 20px; }
 }
 
-/* Hero */
-.hero { background: var(--orange); border-bottom: 2px solid var(--ink); overflow: hidden; }
-.hero-grid {
-  display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 5vw, 64px);
-  align-items: end; padding-block: clamp(48px, 7vw, 96px);
-}
-.hero h1 { font-size: var(--fs-hero); }
-.hero h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--ink); }
-.hero-copy { display: grid; gap: 28px; min-width: 0; }
-.hero-lede { font-size: var(--fs-lg); line-height: 1.45; max-width: 34ch; }
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: var(--fs-sm); font-weight: 500; }
-.hero-meta span::before { content: "✓"; margin-right: 8px; font-weight: 900; }
-
+/* Photo slots: dark, moody stand-ins until real gym photos go in */
 .photo {
-  position: relative; border: 2px solid var(--ink); border-radius: var(--radius);
+  position: relative; overflow: hidden; max-width: 100%;
   background:
-    repeating-linear-gradient(135deg, transparent 0 14px, rgba(31,22,17,.06) 14px 15px),
-    var(--peach);
-  display: flex; align-items: flex-end; padding: 16px;
-  max-width: 100%; overflow: hidden;
+    radial-gradient(120% 90% at 20% 15%, rgba(242, 135, 15, .22), transparent 55%),
+    radial-gradient(90% 80% at 85% 90%, rgba(232, 90, 152, .22), transparent 60%),
+    linear-gradient(160deg, #2B2225, #151012);
+  border: 1px solid var(--line);
+  display: flex; align-items: flex-end; padding: 18px;
 }
-.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.7) contrast(1.05); }
 .photo-label {
-  position: relative; background: var(--white); border: 2px solid var(--ink);
-  font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  padding: 6px 10px; border-radius: 999px;
+  position: relative; font-size: .6875rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: rgba(20, 16, 17, .6);
 }
-.hero-photo { aspect-ratio: 4 / 5; background-color: var(--pink); }
-.hero-badge {
-  position: absolute; top: 18px; right: 18px;
-  width: 112px; height: 112px; border-radius: 50%;
-  background: var(--ink); color: var(--orange);
-  display: grid; place-items: center; text-align: center;
-  font-weight: 900; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
-  animation: spin 18s linear infinite;
-}
-.hero-badge b { display: block; font-size: 1.75rem; color: var(--white); letter-spacing: 0; }
-@keyframes spin { from { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } to { transform: rotate(-8deg); } }
 
-@media (max-width: 860px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-photo { aspect-ratio: 4 / 3; }
+/* Hero — the logo itself, big, over a dark photo */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero-bg { position: absolute; inset: 0; border: 0; padding: 0; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,17,.35), rgba(20,16,17,.92)); }
+.hero-inner {
+  position: relative; display: grid; justify-items: center; text-align: center; gap: 28px;
+  padding-block: clamp(72px, 11vw, 140px) clamp(56px, 8vw, 96px);
 }
+.hero-mark { display: grid; justify-items: center; line-height: .82; }
+.hero-mark .word { font-size: var(--fs-hero); font-weight: 100; letter-spacing: -.03em; }
+.hero-mark .o { color: var(--orange); }
+.hero-mark .p { color: var(--hot-pink); margin-inline: -.07em; }
+.hero-mark .sub {
+  margin-top: clamp(14px, 2.4vw, 28px);
+  font-size: clamp(1rem, 3vw, 2rem); font-weight: 300; letter-spacing: .7em; margin-right: -.7em;
+  text-transform: uppercase; color: var(--hot-pink);
+}
+.hero h1 { font-size: clamp(1.25rem, 2.6vw, 1.875rem); font-weight: 300; letter-spacing: .22em; text-transform: uppercase; max-width: 30ch; }
+.hero-lede { color: var(--muted); max-width: 52ch; }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+.hero .photo-label { position: absolute; left: var(--gutter); bottom: 18px; }
+@media (max-width: 600px) { .hero .photo-label { display: none; } }
+.mark-in { animation: rise 1.1s cubic-bezier(.2,.7,.2,1) both; }
+.mark-in.d2 { animation-delay: .15s; }
+.mark-in.d3 { animation-delay: .3s; }
+@keyframes rise { from { transform: translateY(18px); } }
 
 /* Ticker */
-.ticker { background: var(--ink); color: var(--orange); overflow: hidden; border-bottom: 2px solid var(--ink); }
+.ticker { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--night); }
 .ticker-track {
-  display: flex; gap: 48px; width: max-content; padding-block: 18px;
-  font-weight: 900; font-size: var(--fs-lg); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
-  animation: ticker 32s linear infinite;
+  display: flex; gap: 40px; width: max-content; padding-block: 20px;
+  font-weight: 300; font-size: var(--fs-sm); letter-spacing: .42em; text-transform: uppercase; white-space: nowrap; color: var(--peach);
+  animation: ticker 40s linear infinite;
 }
-.ticker-track span::after { content: "✦"; margin-left: 48px; color: var(--pink); }
+.ticker-track span::after { content: "•"; margin-left: 40px; color: var(--hot-pink); }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* Philosophy */
-.intro-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
-.intro-grid h2 { font-size: var(--fs-2xl); }
-.intro-grid h2 em { font-style: normal; color: var(--orange); }
-.intro-body { display: grid; gap: 20px; color: var(--ink-soft); max-width: 60ch; min-width: 0; }
-.intro-body p:first-child { color: var(--ink); font-size: var(--fs-lg); line-height: 1.5; }
-.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: clamp(48px, 6vw, 80px); border-top: 2px solid var(--ink); }
-.pillar { padding: 28px 24px 0 0; display: grid; gap: 10px; min-width: 0; }
-.pillar + .pillar { padding-left: 24px; border-left: 2px solid var(--ink); }
-.pillar h3 { font-size: var(--fs-lg); font-weight: 900; text-transform: uppercase; }
-.pillar p { color: var(--ink-soft); font-size: var(--fs-sm); }
+.intro-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.intro-grid h2 { font-size: var(--fs-2xl); margin-top: 18px; }
+.intro-body { display: grid; gap: 20px; color: var(--muted); max-width: 60ch; min-width: 0; }
+.intro-body p:first-child { color: var(--text); font-size: var(--fs-lg); line-height: 1.55; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--line); }
+.pillar { padding: 32px 28px 0 0; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.pillar + .pillar { padding-left: 28px; border-left: 1px solid var(--line); }
+.pillar-letter { font-size: 3rem; font-weight: 100; line-height: 1; }
+.pillar:nth-child(1) .pillar-letter, .pillar:nth-child(3) .pillar-letter { color: var(--orange); }
+.pillar:nth-child(2) .pillar-letter { color: var(--hot-pink); }
+.pillar h3 { font-size: var(--fs-sm); font-weight: 400; letter-spacing: .3em; text-transform: uppercase; }
+.pillar p { color: var(--muted); font-size: var(--fs-sm); }
 @media (max-width: 860px) {
   .intro-grid { grid-template-columns: 1fr; }
   .pillars { grid-template-columns: 1fr; }
-  .pillar, .pillar + .pillar { padding: 24px 0; border-left: 0; border-bottom: 2px solid var(--ink); }
+  .pillar, .pillar + .pillar { padding: 28px 0; border-left: 0; border-bottom: 1px solid var(--line); }
 }
 
+/* Section heads */
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(40px, 5vw, 64px); }
+.section-head h2 { font-size: var(--fs-2xl); margin-top: 18px; }
+.section-head p { max-width: 42ch; color: var(--muted); }
+
 /* Programs */
-.programs { background: var(--ink); color: var(--white); }
-.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(36px, 5vw, 56px); }
-.section-head h2 { font-size: var(--fs-2xl); }
-.section-head p { max-width: 42ch; }
-.programs .section-head p { color: rgba(255,255,255,.72); }
-.programs .eyebrow { color: var(--orange); }
 .program-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .program {
-  color: var(--ink); border: 2px solid var(--ink); border-radius: var(--radius);
-  padding: 32px 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0;
-  transition: transform .25s;
+  position: relative; background: var(--night-3); border: 1px solid var(--line); border-radius: 2px;
+  padding: 36px 30px 30px; display: flex; flex-direction: column; gap: 20px; min-width: 0;
+  transition: border-color .3s, transform .3s;
 }
-.program:hover { transform: translateY(-6px); }
-.program:nth-child(1) { background: var(--orange); }
-.program:nth-child(2) { background: var(--pink); }
-.program:nth-child(3) { background: var(--peach); }
-.program-top { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-.program .tag { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border: 2px solid var(--ink); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
-.program h3 { font-size: var(--fs-xl); font-weight: 900; text-transform: uppercase; }
-.program ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: var(--fs-sm); }
-.program li { display: flex; gap: 10px; }
-.program li::before { content: "→"; font-weight: 900; }
-.program .btn { margin-top: auto; align-self: flex-start; }
-.program-detail { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding-top: 16px; border-top: 2px solid var(--ink); }
+.program::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 3px; background: var(--orange); }
+.program:nth-child(2)::before { background: var(--hot-pink); }
+.program:nth-child(3)::before { background: var(--peach); }
+.program:hover { border-color: var(--hot-pink); transform: translateY(-4px); }
+.program .tag { font-size: .6875rem; letter-spacing: .3em; text-transform: uppercase; color: var(--peach); }
+.program h3 { font-size: var(--fs-xl); text-transform: uppercase; letter-spacing: .08em; }
+.program ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; font-size: var(--fs-sm); color: var(--muted); }
+.program li { display: flex; gap: 12px; }
+.program li::before { content: "—"; color: var(--orange); flex: none; }
+.program-detail { font-size: .6875rem; letter-spacing: .3em; text-transform: uppercase; padding-top: 18px; border-top: 1px solid var(--line); margin-top: auto; }
+.program .btn { align-self: flex-start; }
 @media (max-width: 960px) { .program-grid { grid-template-columns: 1fr; } }
 
 /* Process */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: step; }
-.step { padding: 28px 24px 8px 0; border-top: 2px solid var(--ink); display: grid; gap: 12px; align-content: start; min-width: 0; }
-.step + .step { padding-left: 24px; border-left: 2px solid var(--ink); }
-.step-num { font-size: 3.5rem; font-weight: 900; line-height: 1; color: var(--orange); -webkit-text-stroke: 2px var(--ink); font-variant-numeric: tabular-nums; }
-.step h3 { font-size: var(--fs-lg); font-weight: 900; text-transform: uppercase; }
-.step p { color: var(--ink-soft); font-size: var(--fs-sm); }
-.step .when { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); }
+.step { padding: 30px 26px 8px 0; border-top: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.step + .step { padding-left: 26px; border-left: 1px solid var(--line); }
+.step-num { font-size: 3.75rem; font-weight: 100; line-height: 1; color: var(--orange); font-variant-numeric: tabular-nums; }
+.step:nth-child(even) .step-num { color: var(--hot-pink); }
+.step h3 { font-size: var(--fs-sm); font-weight: 400; letter-spacing: .3em; text-transform: uppercase; }
+.step p { color: var(--muted); font-size: var(--fs-sm); }
+.step .when { font-size: .6875rem; letter-spacing: .3em; text-transform: uppercase; color: var(--peach); }
 @media (max-width: 960px) {
   .steps { grid-template-columns: 1fr 1fr; }
   .step:nth-child(3) { padding-left: 0; border-left: 0; }
 }
 @media (max-width: 560px) {
   .steps { grid-template-columns: 1fr; }
-  .step, .step + .step { padding: 24px 0; border-left: 0; }
+  .step, .step + .step { padding: 26px 0; border-left: 0; }
 }
 
 /* Coach */
-.coach { background: var(--pink); border-block: 2px solid var(--ink); }
-.coach-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.coach-photo { aspect-ratio: 1 / 1; background-color: var(--peach); }
+.coach-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.coach-photo { aspect-ratio: 4 / 5; }
 .coach-copy { display: grid; gap: 22px; min-width: 0; }
 .coach-copy h2 { font-size: var(--fs-2xl); }
-.coach-copy p { max-width: 58ch; }
+.coach-copy p { max-width: 58ch; color: var(--muted); }
+.coach-copy p.lead { color: var(--text); font-size: var(--fs-lg); line-height: 1.55; }
 .creds { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
-.creds li { background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.signature { font-style: italic; font-size: var(--fs-lg); }
+.creds li { border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: .6875rem; letter-spacing: .24em; text-transform: uppercase; color: var(--pink); }
+.signature { font-style: italic; color: var(--peach) !important; }
 @media (max-width: 860px) { .coach-grid { grid-template-columns: 1fr; } .coach-photo { aspect-ratio: 4 / 3; } }
 
 /* Results */
 .quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .quote {
-  margin: 0; background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius);
-  padding: 28px; display: flex; flex-direction: column; gap: 20px; min-width: 0;
+  margin: 0; background: var(--night-3); border: 1px solid var(--line); border-radius: 2px;
+  padding: 30px; display: flex; flex-direction: column; gap: 20px; min-width: 0;
 }
-.quote-mark { font-size: 4rem; font-weight: 900; line-height: .6; color: var(--orange); height: 28px; }
-.quote blockquote { margin: 0; font-size: var(--fs-md); }
-.quote figcaption { margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 2px solid var(--ink); }
-.avatar { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); background: var(--peach); flex: none; }
-.quote:nth-child(2) .avatar { background: var(--pink); }
-.quote:nth-child(3) .avatar { background: var(--orange); }
-.quote figcaption b { display: block; font-size: var(--fs-sm); }
-.quote figcaption span { font-size: var(--fs-xs); color: var(--ink-soft); }
-.placeholder-note { margin-top: 16px; font-size: var(--fs-xs); color: var(--ink-soft); }
+.quote-mark { font-size: 4.5rem; font-weight: 100; line-height: .6; height: 30px; color: var(--hot-pink); }
+.quote blockquote { margin: 0; color: var(--text); }
+.quote figcaption { margin-top: auto; display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.avatar { width: 44px; height: 44px; border-radius: 50%; flex: none; background: linear-gradient(135deg, var(--orange), var(--hot-pink)); opacity: .85; }
+.quote figcaption b { display: block; font-size: var(--fs-sm); font-weight: 400; letter-spacing: .08em; }
+.quote figcaption span { font-size: .6875rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.placeholder-note { margin-top: 18px; font-size: var(--fs-xs); color: var(--muted); }
 @media (max-width: 960px) { .quote-grid { grid-template-columns: 1fr; } }
 
 /* FAQ */
-.faq { background: var(--peach); border-block: 2px solid var(--ink); }
-.faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
-.faq-grid h2 { font-size: var(--fs-2xl); }
-.faq-list { border-top: 2px solid var(--ink); min-width: 0; }
-.faq-list details { border-bottom: 2px solid var(--ink); }
+.faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.faq-grid h2 { font-size: var(--fs-2xl); margin-top: 18px; }
+.faq-list { border-top: 1px solid var(--line); min-width: 0; }
+.faq-list details { border-bottom: 1px solid var(--line); }
 .faq-list summary {
   list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  padding: 22px 0; font-weight: 700; font-size: var(--fs-md);
+  padding: 24px 0; font-weight: 400; font-size: var(--fs-md);
 }
+.faq-list summary:hover { color: var(--orange); }
 .faq-list summary::-webkit-details-marker { display: none; }
-.faq-list summary::after { content: "+"; font-size: 1.75rem; font-weight: 300; line-height: 1; transition: transform .2s; flex: none; }
+.faq-list summary::after { content: "+"; font-size: 1.75rem; font-weight: 100; line-height: 1; color: var(--hot-pink); transition: transform .25s; flex: none; }
 .faq-list details[open] summary::after { transform: rotate(45deg); }
-.faq-list details p { padding-bottom: 22px; max-width: 62ch; color: var(--ink-soft); }
+.faq-list details p { padding-bottom: 24px; max-width: 62ch; color: var(--muted); }
 @media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr; } }
 
 /* Apply */
-.apply { background: var(--orange); }
-.apply-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
-.apply-copy { display: grid; gap: 22px; min-width: 0; }
-.apply-copy h2 { font-size: var(--fs-hero); }
-.apply-copy p { font-size: var(--fs-lg); max-width: 34ch; line-height: 1.45; }
-.form { background: var(--cream); border: 2px solid var(--ink); border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); display: grid; gap: 18px; min-width: 0; }
-.field { display: grid; gap: 6px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.field label { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.field input, .field select, .field textarea {
-  width: 100%; font: 400 var(--fs-md) var(--font); color: var(--ink);
-  background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius); padding: 12px 14px;
+.apply { position: relative; overflow: hidden; border-top: 1px solid var(--line); }
+.apply::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 70% at 0% 100%, rgba(242, 135, 15, .2), transparent 70%),
+    radial-gradient(50% 60% at 100% 0%, rgba(232, 90, 152, .18), transparent 70%);
 }
-.field textarea { min-height: 110px; resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; box-shadow: 0 0 0 3px var(--orange); }
+.apply-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.apply-copy { display: grid; gap: 22px; min-width: 0; }
+.apply-copy h2 { font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 100; line-height: 1.02; }
+.apply-copy p { font-size: var(--fs-lg); max-width: 36ch; color: var(--muted); line-height: 1.55; }
+.form { background: rgba(29, 23, 25, .9); border: 1px solid var(--line); border-radius: 2px; padding: clamp(24px, 4vw, 40px); display: grid; gap: 20px; min-width: 0; }
+.field { display: grid; gap: 8px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field label { font-size: .6875rem; letter-spacing: .28em; text-transform: uppercase; color: var(--pink); }
+.field input, .field select, .field textarea {
+  width: 100%; font: 300 var(--fs-md) var(--font); color: var(--text);
+  background: var(--night-3); border: 1px solid var(--line); border-radius: 2px; padding: 13px 14px;
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(185, 168, 164, .6); }
+.field textarea { min-height: 112px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--orange); }
 .form .btn { justify-self: start; }
-.form-status { font-weight: 700; }
+.form-status { color: var(--peach); }
 @media (max-width: 860px) { .apply-grid { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 
 /* Footer */
-.site-footer { background: var(--ink); color: var(--white); padding-block: 64px 32px; }
-.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.18); }
-.footer-top h4 { margin: 0 0 14px; font-size: var(--fs-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--orange); }
-.footer-top ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--fs-sm); }
-.footer-top a { text-decoration: none; color: rgba(255,255,255,.8); }
+.site-footer { border-top: 1px solid var(--line); padding-block: 72px 32px; background: var(--night); }
+.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 48px; border-bottom: 1px solid var(--line); }
+.footer-top h4 { margin: 0 0 16px; font-size: .6875rem; font-weight: 400; letter-spacing: .32em; text-transform: uppercase; color: var(--hot-pink); }
+.footer-top ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: var(--fs-sm); color: var(--muted); }
+.footer-top a { text-decoration: none; }
 .footer-top a:hover { color: var(--orange); }
-.footer-brand p { margin-top: 16px; color: rgba(255,255,255,.7); font-size: var(--fs-sm); max-width: 32ch; }
-.site-footer .logo-mark { background: var(--orange); color: var(--ink); }
-.footer-word { font-size: clamp(3rem, 13vw, 11rem); font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; line-height: .9; color: var(--orange); padding-block: 40px 24px; overflow-wrap: anywhere; }
-.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: var(--fs-xs); color: rgba(255,255,255,.6); }
+.footer-brand p { margin-top: 20px; color: var(--muted); font-size: var(--fs-sm); max-width: 32ch; }
+.footer-brand .logo { justify-items: start; }
+.footer-brand .logo-sub { margin-right: 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 28px; font-size: var(--fs-xs); color: var(--muted); }
 @media (max-width: 860px) { .footer-top { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
 </style>
 </head>
@@ -330,9 +341,9 @@ p { margin: 0; }
 
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="logo" href="#top">
-      <span class="logo-mark" aria-hidden="true">R</span>
-      <span>Rise<small>Athletic Club</small></span>
+    <a class="logo" href="#top" aria-label="KBE Fitness home">
+      <span class="logo-word" aria-hidden="true"><span class="o">K</span><span class="p">B</span><span class="o">E</span></span>
+      <span class="logo-sub" aria-hidden="true">Fitness</span>
     </a>
     <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <ul class="nav-links" id="nav-links">
@@ -341,7 +352,7 @@ p { margin: 0; }
       <li><a href="#coach">About</a></li>
       <li><a href="#results">Results</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a class="btn btn-ink" href="#apply">Apply now</a></li>
+      <li><a class="btn btn-fill" href="#apply">Apply now</a></li>
     </ul>
   </nav>
 </header>
@@ -349,33 +360,28 @@ p { margin: 0; }
 <main id="top">
 
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Personal training · Online coaching · Nutrition</p>
-        <h1 class="display">Get strong.<br><span class="outline">Stay</span> strong.</h1>
-        <p class="hero-lede">Coaching built around your body, your schedule and your goals. Real programming, real accountability, and a coach in your corner every week.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-ink" href="#apply">Start your application <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn-line" href="#programs">See programs</a>
-        </div>
-        <div class="hero-meta">
-          <span>In-person &amp; online</span>
-          <span>Custom training plans</span>
-          <span>Weekly check-ins</span>
-        </div>
+    <div class="photo hero-bg">
+      <!-- Replace with: <img src="images/hero.jpg" alt=""> — a dark, close gym shot works best behind the logo -->
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-mark mark-in" role="img" aria-label="KBE Fitness">
+        <span class="word"><span class="o">K</span><span class="p">B</span><span class="o">E</span></span>
+        <span class="sub">Fitness</span>
       </div>
-      <div class="photo hero-photo">
-        <!-- Replace with: <img src="images/hero.jpg" alt="Coach training a client"> -->
-        <div class="hero-badge" aria-hidden="true"><span><b>1:1</b>Coaching</span></div>
-        <span class="photo-label">Hero photo · coach with client</span>
+      <h1 class="mark-in d2">Get strong. Stay strong.</h1>
+      <p class="hero-lede mark-in d2">Personal training, online coaching and nutrition built around your body, your schedule and your goals, with a coach in your corner every week.</p>
+      <div class="hero-ctas mark-in d3">
+        <a class="btn btn-fill" href="#apply">Start your application <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-line" href="#programs">See programs</a>
       </div>
     </div>
+    <span class="photo-label">Hero photo · dark gym shot</span>
   </section>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>Strength</span><span>Conditioning</span><span>Nutrition</span><span>Accountability</span><span>Mobility</span><span>Community</span>
-      <span>Strength</span><span>Conditioning</span><span>Nutrition</span><span>Accountability</span><span>Mobility</span><span>Community</span>
+      <span>Strength</span><span>Conditioning</span><span>Nutrition</span><span>Accountability</span><span>Mobility</span><span>Confidence</span>
+      <span>Strength</span><span>Conditioning</span><span>Nutrition</span><span>Accountability</span><span>Mobility</span><span>Confidence</span>
     </div>
   </div>
 
@@ -383,8 +389,8 @@ p { margin: 0; }
     <div class="wrap">
       <div class="intro-grid">
         <div>
-          <p class="eyebrow" style="margin-bottom:16px">Our philosophy</p>
-          <h2 class="display">Training with a <em>purpose</em>, not a punishment.</h2>
+          <p class="eyebrow">Our philosophy</p>
+          <h2 class="display">Training with a <em>purpose</em>, not a <span class="pk">punishment</span>.</h2>
         </div>
         <div class="intro-body">
           <p>Most people don't need more motivation. They need a plan that fits their life and someone who keeps them honest.</p>
@@ -394,14 +400,17 @@ p { margin: 0; }
       </div>
       <div class="pillars">
         <div class="pillar">
+          <span class="pillar-letter" aria-hidden="true">T</span>
           <h3>Train smart</h3>
           <p>Periodized programming with clear sets, reps and RPE targets, adjusted every week based on how you're progressing.</p>
         </div>
         <div class="pillar">
+          <span class="pillar-letter" aria-hidden="true">F</span>
           <h3>Fuel right</h3>
           <p>Protein, fiber and hydration targets you can hit with the food you already like. No meal plans you'll quit in a week.</p>
         </div>
         <div class="pillar">
+          <span class="pillar-letter" aria-hidden="true">C</span>
           <h3>Stay consistent</h3>
           <p>Weekly check-ins, form reviews and direct messaging with your coach so you never wonder what to do next.</p>
         </div>
@@ -409,21 +418,19 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="band programs" id="programs">
+  <section class="band band-raised" id="programs">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow" style="margin-bottom:16px">Programs</p>
-          <h2 class="display">Find your fit</h2>
+          <p class="eyebrow">Programs</p>
+          <h2 class="display">Find your <em>fit</em></h2>
         </div>
-        <p>Three ways to work with us. Not sure which one is right? Apply and we'll recommend one on your consult call.</p>
+        <p>Three ways to work with KBE. Not sure which one is right? Apply and we'll recommend one on your consult call.</p>
       </div>
       <div class="program-grid">
         <article class="program">
-          <div class="program-top">
-            <span class="tag">In person</span>
-            <h3>Personal Training</h3>
-          </div>
+          <span class="tag">In person</span>
+          <h3>Personal Training</h3>
           <ul>
             <li>1:1 sessions with your coach, 2–3× per week</li>
             <li>Movement assessment and body composition tracking</li>
@@ -431,13 +438,11 @@ p { margin: 0; }
             <li>Nutrition guidance included</li>
           </ul>
           <p class="program-detail">60-minute sessions</p>
-          <a class="btn btn-ink" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
         </article>
         <article class="program">
-          <div class="program-top">
-            <span class="tag">Anywhere</span>
-            <h3>Online Coaching</h3>
-          </div>
+          <span class="tag">Anywhere</span>
+          <h3>Online Coaching</h3>
           <ul>
             <li>Custom training plan delivered in the app</li>
             <li>Weekly check-in and program updates</li>
@@ -445,13 +450,11 @@ p { margin: 0; }
             <li>Direct messaging with your coach</li>
           </ul>
           <p class="program-detail">Home or gym plans</p>
-          <a class="btn btn-ink" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
         </article>
         <article class="program">
-          <div class="program-top">
-            <span class="tag">Add-on or solo</span>
-            <h3>Nutrition Coaching</h3>
-          </div>
+          <span class="tag">Add-on or solo</span>
+          <h3>Nutrition Coaching</h3>
           <ul>
             <li>Personalized calorie and macro targets</li>
             <li>Habit-based coaching, one change at a time</li>
@@ -459,7 +462,7 @@ p { margin: 0; }
             <li>Bi-weekly progress reviews</li>
           </ul>
           <p class="program-detail">12-week minimum</p>
-          <a class="btn btn-ink" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="#apply">Apply <span class="arrow" aria-hidden="true">→</span></a>
         </article>
       </div>
     </div>
@@ -469,8 +472,8 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow" style="margin-bottom:16px">How it works</p>
-          <h2 class="display">From application to day one</h2>
+          <p class="eyebrow">How it works</p>
+          <h2 class="display">From application to <span class="pk">day one</span></h2>
         </div>
         <p>Most clients are training on their new plan within a week of applying.</p>
       </div>
@@ -503,17 +506,17 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="band coach" id="coach">
+  <section class="band band-raised" id="coach">
     <div class="wrap coach-grid">
       <div class="photo coach-photo">
-        <!-- Replace with: <img src="images/coach.jpg" alt="Head coach portrait"> -->
+        <!-- Replace with: <img src="images/coach.jpg" alt="[Coach Name], founder of KBE Fitness"> -->
         <span class="photo-label">Coach portrait</span>
       </div>
       <div class="coach-copy">
         <p class="eyebrow">Meet your coach</p>
-        <h2 class="display">Hi, I'm [Coach Name].</h2>
-        <p>I started coaching because I know what it feels like to bounce between programs and never see real progress. Now I help busy people build strength, confidence and habits that last.</p>
-        <p>My clients range from first-time lifters to competitive athletes. What they have in common is a plan that's built for them and a coach who shows up every week.</p>
+        <h2 class="display">Hi, I'm <em>[Coach Name]</em></h2>
+        <p class="lead">I started KBE because I know what it feels like to bounce between programs and never see real progress.</p>
+        <p>Now I help busy people build strength, confidence and habits that last. My clients range from first-time lifters to competitive athletes. What they have in common is a plan that's built for them and a coach who shows up every week.</p>
         <ul class="creds">
           <li>Certified Personal Trainer</li>
           <li>Nutrition Coach</li>
@@ -528,8 +531,8 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow" style="margin-bottom:16px">Client results</p>
-          <h2 class="display">In their words</h2>
+          <p class="eyebrow">Client results</p>
+          <h2 class="display">In their <em>words</em></h2>
         </div>
         <a class="btn btn-line" href="#apply">Become the next one <span class="arrow" aria-hidden="true">→</span></a>
       </div>
@@ -554,11 +557,11 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="band faq" id="faq">
+  <section class="band band-raised" id="faq">
     <div class="wrap faq-grid">
       <div>
-        <p class="eyebrow" style="margin-bottom:16px">FAQ</p>
-        <h2 class="display">Questions, answered</h2>
+        <p class="eyebrow">FAQ</p>
+        <h2 class="display">Questions, <span class="pk">answered</span></h2>
       </div>
       <div class="faq-list">
         <details open>
@@ -589,7 +592,7 @@ p { margin: 0; }
     <div class="wrap apply-grid">
       <div class="apply-copy">
         <p class="eyebrow">Apply for coaching</p>
-        <h2 class="display">Your first rep starts here.</h2>
+        <h2 class="display">Your first rep <em>starts</em> <span class="pk">here</span>.</h2>
         <p>Fill out the form and we'll reach out within 48 hours to book your free consult call.</p>
       </div>
       <form class="form" id="apply-form" novalidate>
@@ -622,7 +625,7 @@ p { margin: 0; }
           <label for="f-goals">What's your main goal?</label>
           <textarea id="f-goals" name="goals" placeholder="e.g. Build strength, lose 15 lb, train for a race"></textarea>
         </div>
-        <button class="btn btn-ink" type="submit">Submit application <span class="arrow" aria-hidden="true">→</span></button>
+        <button class="btn btn-fill" type="submit">Submit application <span class="arrow" aria-hidden="true">→</span></button>
         <p class="form-status" id="form-status" role="status" hidden></p>
       </form>
     </div>
@@ -634,7 +637,10 @@ p { margin: 0; }
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">R</span><span>Rise<small>Athletic Club</small></span></a>
+        <a class="logo" href="#top" aria-label="KBE Fitness home">
+          <span class="logo-word" aria-hidden="true"><span class="o">K</span><span class="p">B</span><span class="o">E</span></span>
+          <span class="logo-sub" aria-hidden="true">Fitness</span>
+        </a>
         <p>Personal training, online coaching and nutrition coaching for people who want to get strong and stay strong.</p>
       </div>
       <div>
@@ -646,7 +652,7 @@ p { margin: 0; }
         </ul>
       </div>
       <div>
-        <h4>Club</h4>
+        <h4>KBE</h4>
         <ul>
           <li><a href="#coach">About</a></li>
           <li><a href="#results">Results</a></li>
@@ -656,17 +662,16 @@ p { margin: 0; }
       <div>
         <h4>Contact</h4>
         <ul>
-          <li>hello@yourclub.com</li>
+          <li>hello@kbefitness.com</li>
           <li>(000) 000-0000</li>
           <li>City, State</li>
           <li><a href="#">Instagram</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-word" aria-hidden="true">Rise AC</div>
     <div class="footer-bottom">
-      <span>© 2026 Rise Athletic Club. All rights reserved.</span>
-      <span>Built to move.</span>
+      <span>© 2026 KBE Fitness. All rights reserved.</span>
+      <span>Get strong. Stay strong.</span>
     </div>
   </div>
 </footer>
@@ -680,7 +685,7 @@ p { margin: 0; }
     toggle.setAttribute('aria-expanded', String(open));
   });
   links.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') {
+    if (e.target.closest('a')) {
       links.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     }
